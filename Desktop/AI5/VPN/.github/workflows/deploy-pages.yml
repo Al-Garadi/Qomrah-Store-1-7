@@ -1,0 +1,37 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare static output
+        run: |
+          set -e
+          mkdir -p out
+          # Copy the public files that make up the site
+          cp index.html styles.css script.js out/ || true
+          # copy README as simple index for non-browser previews
+          cp README.md out/ || true
+          # include any static folders if present
+          if [ -d assets ]; then cp -R assets out/; fi
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./out
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
