@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Gaming VPN Roadmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to content</a>
+    <header class="topbar" role="banner" aria-label="Top navigation">
+      <div class="topbar__inner">
+        <div class="brand">Gulf Edge Labs — VPN Roadmap</div>
+        <nav class="topbar__nav" aria-label="Primary navigation">
+          <a href="#roadmap">Roadmap</a>
+          <a href="#infrastructure">Infrastructure</a>
+          <a href="#android">Android</a>
+          <a href="#ios">iOS</a>
+          <a href="#backend">Backend</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="topbar__actions">
+          <button id="themeToggle" aria-pressed="false" aria-label="Toggle light and dark theme">🌗</button>
+        </div>
+      </div>
+    </header>
+
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Project Roadmap</p>
+        <h1>Custom Gaming VPN for PUBG Mobile</h1>
+        <p class="lede">
+          Design a multi-platform WireGuard-first VPN that grants Yemen-based
+          players reliable, low-latency access to Gulf servers while remaining
+          compliant and transparent.
+        </p>
+        <div class="hero__cta">
+          <a class="btn primary" href="#roadmap">Explore Roadmap</a>
+          <a class="btn" href="#legal">Review Compliance</a>
+        </div>
+      </div>
+      <div class="hero__card">
+        <h3>Launch Targets</h3>
+        <ul>
+          <li>
+            <span>Primary Protocol</span>
+            <strong>WireGuard UDP 51820</strong>
+          </li>
+          <li>
+            <span>Fallback</span>
+            <strong>OpenVPN UDP 1194</strong>
+          </li>
+          <li>
+            <span>Regions</span>
+            <strong>AWS Bahrain + UAE</strong>
+          </li>
+          <li>
+            <span>Mission</span>
+            <strong>Sub-80ms PUBG RTT</strong>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main id="mainContent" role="main">
+      <aside id="toc" aria-label="Table of contents">
+        <h4>Contents</h4>
+        <nav id="tocList" aria-label="Page sections"></nav>
+      </aside>
+      <section id="legal" class="section">
+        <div class="section__header">
+          <p class="eyebrow">1 · Compliance</p>
+          <h2>Plan within legal guardrails</h2>
+          <p>
+            Provide a clear Terms of Service and privacy policy. State that the
+            VPN only supports lawful gaming and diagnostics, and that no
+            activity data is retained beyond essential analytics.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Yemen</h3>
+            <p>
+              VPN usage is legal. Educate users on acceptable use despite
+              attempts at censorship. Reference: Comparitech.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Saudi Arabia</h3>
+            <p>
+              VPNs are not illegal; 29% of residents use them. Block provider
+              websites may occur, so maintain mirrored download links.
+            </p>
+          </article>
+          <article class="card caution">
+            <h3>United Arab Emirates</h3>
+            <p>
+              Law 34/2021 penalizes masking IPs to commit or hide crimes. Allow
+              legitimate usage only and document the DoT/TRA guidelines in the
+              ToS.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section">
+        <div class="section__header">
+          <p class="eyebrow">2 · Roadmap</p>
+          <h2>Execution milestones</h2>
+          <p>
+            Break the launch into focused waves that validate compliance, stand
+            up infrastructure, and deliver client applications with telemetry
+            driven improvements.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item">
+            <span class="timeline__step">Phase 1</span>
+            <h3>Project Planning</h3>
+            <ul>
+              <li>Draft ToS, privacy policy, and allowable use charter.</li>
+              <li>
+                Select AWS (Bahrain/UAE) as primary VPS plus DO/Linode backups.
+              </li>
+              <li>Reserve static IPs; confirm UDP 51820/1194 availability.</li>
+            </ul>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__step">Phase 2</span>
+            <h3>Server Build-Out</h3>
+            <ul>
+              <li>Provision t3.micro/t4g.small nodes (~$7.5/mo).</li>
+              <li>Automate WireGuard configs and peer key rotation.</li>
+              <li>Add OpenVPN fallback and health checks per region.</li>
+            </ul>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__step">Phase 3</span>
+            <h3>Client Development</h3>
+            <ul>
+              <li>Android app via Kotlin `VpnService` with kill switch.</li>
+              <li>iOS app using `NEPacketTunnelProvider`.</li>
+              <li>
+                Optional backend (Node.js/Go + PostgreSQL) for server catalog
+                and analytics.
+              </li>
+            </ul>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__step">Phase 4</span>
+            <h3>Hardening & Launch</h3>
+            <ul>
+              <li>Enable Always-On VPN and block traffic on drop.</li>
+              <li>Route DNS through tunnel; disable IPv6 unless supported.</li>
+              <li>Publish transparency report and support flows.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="infrastructure">
+        <div class="section__header">
+          <p class="eyebrow">3 · Infrastructure</p>
+          <h2>Where and how to host</h2>
+        </div>
+        <div class="grid two-col">
+          <div>
+            <h3>Primary Regions</h3>
+            <p>
+              AWS Middle East (Bahrain) and AWS UAE place compute closest to
+              Yemeni subscribers and Saudi/Gulf matchmaking regions.
+            </p>
+            <ul class="key-points">
+              <li>Use ASGs or Terraform for reproducible builds.</li>
+              <li>Monitor latency via CloudWatch/Prometheus exports.</li>
+              <li>Store configs in AWS Systems Manager Parameter Store.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Backup Providers</h3>
+            <p>Alternate IPs protect against targeted blocking.</p>
+            <ul class="key-points">
+              <li>DigitalOcean 1vCPU / 1GB — $6/month.</li>
+              <li>Linode Nanode 1GB — $5/month.</li>
+              <li>Rotate reserved IP ranges every quarter.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="server">
+        <div class="section__header">
+          <p class="eyebrow">4 · WireGuard Server Setup</p>
+          <h2>Provision and harden Ubuntu 22.04 nodes</h2>
+          <p>
+            Run these commands as <code>root</code> on each VPS. Generate fresh
+            key pairs per client and ensure permissions on private keys never
+            exceed <code>chmod 600</code>.
+          </p>
+        </div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Install packages & keys</h3>
+            <pre class="code"><code>apt update && apt install -y wireguard qrencode iptables-persistent
+
+mkdir -p /etc/wireguard &amp;&amp; cd /etc/wireguard
+umask 077
+wg genkey | tee server_private.key | wg pubkey &gt; server_public.key
+wg genkey | tee client1_private.key | wg pubkey &gt; client1_public.key</code></pre>
+          </article>
+          <article class="card">
+            <h3>Create <code>wg0.conf</code></h3>
+            <pre class="code"><code>[Interface]
+Address = 10.0.0.1/24
+ListenPort = 51820
+PrivateKey = &lt;server_private.key&gt;
+MTU = 1280
+PostUp   = sysctl -w net.ipv4.ip_forward=1 ; \
+           iptables -A FORWARD -i %i -j ACCEPT ; \
+           iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE ; \
+           iptables -t mangle -A POSTROUTING -p tcp --tcp-flags SYN,RST SYN \
+             -j TCPMSS --clamp-mss-to-pmtu
+PostDown = iptables -D FORWARD -i %i -j ACCEPT ; \
+           iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE ; \
+           iptables -t mangle -D POSTROUTING -p tcp --tcp-flags SYN,RST SYN \
+             -j TCPMSS --clamp-mss-to-pmtu
+
+[Peer]
+PublicKey = &lt;client1_public.key&gt;
+AllowedIPs = 10.0.0.2/32</code></pre>
+          </article>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>MTU &amp; UDP tuning</h3>
+            <ul>
+              <li>
+                Start at MTU 1280 (60 bytes less than narrowest IPv4 link) and
+                increase only if latency improves.
+              </li>
+              <li>
+                Clamp TCP MSS with the PostUp/PostDown mangle rules to prevent
+                fragmentation on PPPoE (1492) paths.
+              </li>
+              <li>
+                Enable UDP fast path by setting
+                <code>net.core.rmem_max</code> and
+                <code>net.core.wmem_max</code> to 4&nbsp;MB plus
+                <code>net.ipv4.tcp_mtu_probing=1</code> in
+                <code>/etc/sysctl.conf</code>.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Enable the service</h3>
+            <ul>
+              <li>
+                <code>systemctl enable --now wg-quick@wg0</code> and verify with
+                <code>wg show</code>.
+              </li>
+              <li>
+                Allow inbound UDP 51820 and TCP/UDP 443 in the cloud firewall
+                and iptables.
+              </li>
+              <li>
+                Harden SSH (change port, disable password logins, enforce keys)
+                and enable unattended-upgrades.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>OpenVPN fallback</h3>
+            <ul>
+              <li>Install <code>openvpn</code> + EasyRSA to issue server/client certs.</li>
+              <li>
+                Listen on UDP 1194 using <code>proto udp</code>,
+                <code>cipher AES-256-GCM</code>, <code>auth SHA256</code>,
+                <code>user nobody</code>, <code>group nogroup</code>.
+              </li>
+              <li>
+                Reuse NAT/masquerade scripts via <code>script-security</code>
+                directives for the OpenVPN up/down hooks.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="optimization">
+        <div class="section__header">
+          <p class="eyebrow">5 · Gaming Optimization</p>
+          <h2>Prioritise PUBG traffic and stability</h2>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>QoS &amp; DSCP</h3>
+            <ul>
+              <li>
+                Mark outbound game packets with DSCP 46 (Expedited Forwarding)
+                and ensure upstream firewalls honor the queue.
+              </li>
+              <li>
+                Mirror rules on home routers with QoS policies that prioritize
+                UDP 51820/1194 to reduce jitter.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Service hygiene</h3>
+            <ul>
+              <li>Disable unnecessary daemons (UPnP, unused IPv6 listeners).</li>
+              <li>Keep kernels updated and trim attack surface via fail2ban.</li>
+              <li>
+                Watchtower-style cron jobs can reboot or rotate nodes before
+                latency spikes.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Keepalive strategy</h3>
+            <ul>
+              <li>
+                Set <code>PersistentKeepalive = 25</code> seconds in all client
+                configs to hold NAT bindings across mobile networks.
+              </li>
+              <li>
+                Monitor keepalive failures via <code>wg show</code> or Prometheus
+                exporters to detect ISP throttling.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="android">
+        <div class="section__header">
+          <p class="eyebrow">6 · Android Application</p>
+          <h2>Kotlin VpnService client with WireGuard-first tunnel</h2>
+          <p>
+            Build on Android’s <code>VpnService</code> API, embedding the
+            official wireguard-android backend for core tunneling and
+            OpenVPN3 for fallback networks. The app talks to the backend API
+            to fetch server inventory, keys, and telemetry.
+          </p>
+        </div>
+        <div class="grid two-col">
+          <article class="card list-card">
+            <h3>Architecture highlights</h3>
+            <ul>
+              <li>
+                <strong>Transport:</strong> WireGuard GoBackend wrapped by
+                <code>VpnService</code>, with OpenVPN3 invoked when handshakes
+                to UDP 51820 fail.
+              </li>
+              <li>
+                <strong>UI:</strong> one-tap connect, latency-ranked server list,
+                account view, and kill-switch toggle surfaced via Always-on VPN.
+              </li>
+              <li>
+                <strong>Data flow:</strong> Retrofit/ktor client pulls server
+                list + per-device configs, persisted via Room for offline mode.
+              </li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Manifest service entry</h3>
+            <pre class="code"><code>&lt;service
+    android:name="com.example.vpn.MyVpnService"
+    android:permission="android.permission.BIND_VPN_SERVICE"
+    android:exported="false"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.net.VpnService" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/service&gt;</code></pre>
+          </article>
+        </div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Server model + config generator</h3>
+            <pre class="code"><code>data class ServerInfo(
+    val interfaceAddress: String,
+    val dns: String,
+    val privateKey: String,
+    val publicKey: String,
+    val presharedKey: String?,
+    val allowedIPs: String,
+    val endpoint: String,
+    val keepAlive: Int
+)
+
+fun ServerInfo.getConfig(): String = """[Interface]
+PrivateKey = $privateKey
+Address = $interfaceAddress
+DNS = $dns
+
+[Peer]
+PublicKey = $publicKey
+${'$'}{presharedKey?.let { "PresharedKey = $it\n" } ?: ""}
+AllowedIPs = $allowedIPs
+Endpoint = $endpoint
+PersistentKeepalive = $keepAlive
+""".trimIndent()</code></pre>
+          </article>
+          <article class="card">
+            <h3>VpnService implementation</h3>
+            <pre class="code"><code>class MyVpnService : VpnService() {
+    private lateinit var tunnel: Tunnel
+    private val backend by lazy { WireGuardBackend(this) }
+
+    fun connect(server: ServerInfo) {
+        val config = server.getConfig()
+        tunnel = backend.createTunnel("wg0", config)
+        tunnel.setMtu(1280)
+        tunnel.setAllowedApplications(listOf("com.tencent.ig"))
+        tunnel.connect()
+
+        val vpnInterface = Builder()
+            .setSession(server.endpoint)
+            .setConfigureIntent(pendingIntentForSettings())
+            .setBlocking(true)
+            .establish()
+
+        // Prompt user to enable Always-on + "Block connections without VPN" in Settings.
+        showAlwaysOnInstructions()
+    }
+
+    fun disconnect() {
+        if (this::tunnel.isInitialized) tunnel.disconnect()
+    }
+}</code></pre>
+          </article>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>Interaction &amp; telemetry</h3>
+            <ul>
+              <li>
+                Activities bind to <code>MyVpnService</code> and observe tunnel
+                state via callbacks or <code>StateFlow</code>.
+              </li>
+              <li>
+                Latency view pings each server (ICMP if rooted, else UDP with
+                <code>DatagramSocket</code>) in coroutines, showing average RTT.
+              </li>
+              <li>
+                Provide in-app deeplink to
+                <code>android.settings.VPN_SETTINGS</code> for kill-switch toggle.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>OpenVPN fallback</h3>
+            <ul>
+              <li>
+                Bundle OpenVPN3 core and maintain client profiles (certs + auth)
+                fetched alongside WireGuard configs.
+              </li>
+              <li>
+                Detect blocked WireGuard by monitoring handshake timeout;
+                automatically call OpenVPN connect with matching server endpoint.
+              </li>
+              <li>
+                Surface protocol status in the UI so players know when fallback
+                is active; collect metrics for future routing decisions.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="ios">
+        <div class="section__header">
+          <p class="eyebrow">7 · iOS Application</p>
+          <h2>Swift Network Extension client with WireGuardKit</h2>
+          <p>
+            Ship a Packet Tunnel Provider extension using Network Extension. Use
+            WireGuardKit to manage keys/tunnels first, then OpenVPN3 Swift for
+            fallback links. Match the Android UX: one-tap connect, latency
+            ranking, and kill-switch observability.
+          </p>
+        </div>
+        <div class="grid two-col">
+          <article class="card list-card">
+            <h3>Architecture highlights</h3>
+            <ul>
+              <li>
+                Main app (SwiftUI/UIKit) hosts the UI and NETunnelProviderManager
+                configuration screens.
+              </li>
+              <li>
+                Packet Tunnel extension bundles WireGuardKit/Go backend plus the
+                OpenVPN3 core as a secondary engine.
+              </li>
+              <li>
+                App Extension communicates via shared keychain/app group for
+                server configs and tokens.
+              </li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>PacketTunnelProvider.swift</h3>
+            <pre class="code"><code>import NetworkExtension
+import os.log
+
+class PacketTunnelProvider: NEPacketTunnelProvider {
+    let wireGuardWrapper = WireGuardGoWrapper()
+
+    override func startTunnel(
+        options: [String : NSObject]?,
+        completionHandler: @escaping (Error?) -> Void
+    ) {
+        guard
+            let proto = protocolConfiguration as? NETunnelProviderProtocol,
+            let settings = proto.providerConfiguration?[PCKeys.settings.rawValue] as? String,
+            let interfaceName = proto.providerConfiguration?[PCKeys.interfaceName.rawValue] as? String
+        else {
+            completionHandler(TunnelProviderError.tunnelSetupFailed)
+            return
+        }
+
+        wireGuardWrapper.turnOn(withInterfaceName: interfaceName, settingsString: settings)
+
+        let netSettings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: "10.0.0.1")
+        netSettings.ipv4Settings = NEIPv4Settings(addresses: ["10.0.0.2"], subnetMasks: ["255.255.255.0"])
+        netSettings.ipv4Settings?.includedRoutes = [NEIPv4Route.default()]
+        netSettings.dnsSettings = NEDNSSettings(servers: ["10.0.0.1"])
+        netSettings.mtu = 1280
+
+        setTunnelNetworkSettings(netSettings, completionHandler: completionHandler)
+    }
+}</code></pre>
+          </article>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>Configuration &amp; kill switch</h3>
+            <ul>
+              <li>
+                Use <code>NETunnelProviderManager</code> to create/save the VPN
+                profile, embedding the WireGuard config as
+                <code>providerConfiguration</code> (interface name, MTU, settings string).
+              </li>
+              <li>
+                Monitor <code>tunnel.connection.status</code>; call
+                <code>cancelTunnelWithError(_:)</code> if WireGuard fails to keep
+                traffic blocked (kill switch).
+              </li>
+              <li>
+                Offer On-Demand rules (e.g., connect on Wi-Fi/cellular) for
+                automatic recovery after drops.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Latency measurement</h3>
+            <ul>
+              <li>
+                Use <code>NWConnection</code> to send UDP probes to each server’s
+                endpoint; record round-trip times and store in Core Data.
+              </li>
+              <li>
+                Run measurements via <code>Task</code> concurrency to refresh the
+                server list UI without blocking the main thread.
+              </li>
+              <li>
+                Reuse the same data model as Android so backend responses stay
+                consistent.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>OpenVPN fallback</h3>
+            <ul>
+              <li>
+                Bundle <code>openvpn3swift</code> and add a secondary Packet
+                Tunnel target or reuse the same extension with a mode switch.
+              </li>
+              <li>
+                Detect WireGuard handshake failures (timeouts, blocked UDP) and
+                swap to OpenVPN by invoking the OpenVPN3 engine with the profile.
+              </li>
+              <li>
+                Display protocol state in-app so players understand whether the
+                fallback is active.
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>App distribution requirements</h3>
+            <ul>
+              <li>
+                Enrol in Apple Developer Program (USD&nbsp;99/year) and configure
+                identifiers/profiles for the app + extension.
+              </li>
+              <li>
+                Provide accurate App Store metadata, privacy policy, and ToS that
+                emphasize lawful gaming usage.
+              </li>
+              <li>
+                Include necessary usage descriptions (e.g.,
+                <code>NSLocationWhenInUseUsageDescription</code> if latency tests
+                use location) and enable TestFlight for device validation.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="backend">
+        <div class="section__header">
+          <p class="eyebrow">8 · Optional Backend / API</p>
+          <h2>Centralize server metadata, key management, and analytics</h2>
+          <p>
+            A lightweight REST API (Node.js/Go/FastAPI) can orchestrate servers,
+            deliver latency metrics, issue WireGuard keys, and collect aggregated
+            usage data without storing player traffic.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>Core functions</h3>
+            <ul>
+              <li>Expose server catalog + RTT so clients auto-pick lowest latency.</li>
+              <li>Mint WireGuard key pairs, persist public keys mapped to user/server.</li>
+              <li>Authenticate users (email/password, OAuth, or anonymous tokens).</li>
+              <li>
+                Track connection duration and data volumes for capacity planning; never
+                log payload data.
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="table table--api">
+          <div class="table__header">
+            <span>Endpoint</span>
+            <span>Method</span>
+            <span>Description</span>
+          </div>
+          <div class="table__row">
+            <span>/api/servers</span>
+            <span>GET</span>
+            <span>
+              Return server list with id, location, IPs, supported protocols, current
+              load, and observed RTT.
+            </span>
+          </div>
+          <div class="table__row">
+            <span>/api/keys</span>
+            <span>POST</span>
+            <span>
+              Generate a WireGuard key pair, persist the public key + assigned IP, and
+              return the private key to the device.
+            </span>
+          </div>
+          <div class="table__row">
+            <span>/api/usage</span>
+            <span>POST</span>
+            <span>
+              Report session duration and bytes transferred so analytics dashboards
+              track load.
+            </span>
+          </div>
+          <div class="table__row">
+            <span>/api/login</span>
+            <span>POST</span>
+            <span>
+              Optional JWT-based authentication for accounts or subscription tiers.
+            </span>
+          </div>
+        </div>
+        <div class="grid two-col schema">
+          <article class="card">
+            <h3>Servers</h3>
+            <ul>
+              <li><strong>id</strong> UUID</li>
+              <li><strong>ip_address</strong> VARCHAR</li>
+              <li><strong>region</strong> VARCHAR</li>
+              <li><strong>protocols</strong> JSON</li>
+              <li><strong>capacity</strong> INT</li>
+              <li><strong>created_at</strong> TIMESTAMP</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>WireGuard keys</h3>
+            <ul>
+              <li><strong>id</strong> UUID</li>
+              <li><strong>user_id</strong> UUID</li>
+              <li><strong>server_id</strong> UUID</li>
+              <li><strong>public_key</strong> VARCHAR</li>
+              <li><strong>private_key</strong> VARCHAR (encrypted)</li>
+              <li><strong>assigned_ip</strong> CIDR</li>
+              <li><strong>created_at</strong> TIMESTAMP</li>
+            </ul>
+          </article>
+        </div>
+        <div class="cards schema">
+          <article class="card">
+            <h3>Sessions</h3>
+            <ul>
+              <li><strong>id</strong> UUID</li>
+              <li><strong>key_id</strong> UUID</li>
+              <li><strong>start_time</strong> TIMESTAMP</li>
+              <li><strong>end_time</strong> TIMESTAMP</li>
+              <li><strong>bytes_sent</strong> BIGINT</li>
+              <li><strong>bytes_received</strong> BIGINT</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="scaling">
+        <div class="section__header">
+          <p class="eyebrow">9 · Scaling to Thousands</p>
+          <h2>Grow from hundreds to tens of thousands of PUBG players</h2>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>100 → 1 000 users</h3>
+            <ul>
+              <li>
+                A t3.micro (1 Gbps) handles a few hundred WireGuard peers; watch CPU
+                (WireGuard is CPU-bound) and upgrade to t3.small or c6g.medium if usage
+                exceeds ~70%.
+              </li>
+              <li>
+                Deploy multiple regions (Bahrain, UAE, Mumbai) with health-checked
+                round-robin or geolocation load balancers.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>1 000 → 10 000 users</h3>
+            <ul>
+              <li>
+                Use a pool of servers; assign players based on latency + load via
+                backend logic or DNS-based steering.
+              </li>
+              <li>
+                Consider containerized WireGuard pods managed by Kubernetes/Nomad for
+                easier rollout and scaling.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Backend &amp; DB scaling</h3>
+            <ul>
+              <li>Cache /api/servers responses and add read replicas for databases.</li>
+              <li>Partition key records per region and use queues (RabbitMQ) for analytics.</li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>IP rotation</h3>
+            <ul>
+              <li>
+                Maintain pools of Elastic/Floating IPs across providers and rotate to
+                avoid game-server bans.
+              </li>
+              <li>
+                Keep fallback IPs in alternate regions and automate reassignment when
+                bans occur.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="stack">
+        <div class="section__header">
+          <p class="eyebrow">10 · Technology Stack</p>
+          <h2>Protocol and app choices</h2>
+        </div>
+        <div class="cards stack">
+          <article class="card">
+            <h3>WireGuard First</h3>
+            <p>
+              Lightweight UDP tunnels, rapid key rotation, and near-instant
+              handshake improves PUBG responsiveness for mobile players.
+            </p>
+          </article>
+          <article class="card">
+            <h3>OpenVPN Fallback</h3>
+            <p>
+              Keep UDP 1194 tunnels online for restrictive networks. Bundle
+              configs within the client as a secondary option.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Backend & Database</h3>
+            <p>
+              Optional Node.js or Go API exposing server lists and WireGuard
+              config bundles; secure PostgreSQL with TLS and strict RBAC.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="risk">
+        <div class="section__header">
+          <p class="eyebrow">11 · Risk Mitigation</p>
+          <h2>Protect the players and the network</h2>
+        </div>
+        <div class="grid two-col">
+          <div class="checklist">
+            <h3>Kill Switch</h3>
+            <ul>
+              <li>Android API level 24+ Always-On VPN.</li>
+              <li>iOS state monitoring via `NEPacketTunnelProvider`.</li>
+              <li>Block non-tunneled traffic when sessions drop.</li>
+            </ul>
+          </div>
+          <div class="checklist">
+            <h3>Leak Protection</h3>
+            <ul>
+              <li>Tunnel DNS to in-house resolvers.</li>
+              <li>Disable IPv6 unless natively supported.</li>
+              <li>Run periodic leak tests per release.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testing">
+        <div class="section__header">
+          <p class="eyebrow">12 · Testing Plan</p>
+          <h2>Validate performance, security, and scale before launch</h2>
+        </div>
+        <div class="grid two-col">
+          <article class="card list-card">
+            <h3>Device testing</h3>
+            <ul>
+              <li>
+                Cover Android API levels 24–34 across OEMs plus iOS 15–17 devices
+                (phones and tablets).
+              </li>
+              <li>
+                Verify VPN stability on Wi-Fi, LTE, and 5G; switch networks mid
+                session and confirm seamless recovery.
+              </li>
+              <li>
+                Kill-switch test: force-stop the VPN service and ensure traffic
+                is blocked until reconnection.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Network testing</h3>
+            <ul>
+              <li>
+                Run <code>ping</code>, <code>traceroute</code>, and <code>mtr</code> to
+                observe latency and jitter per region.
+              </li>
+              <li>
+                Use <code>iperf3</code> for UDP/TCP throughput; tune MTU based on
+                fragmentation results.
+              </li>
+              <li>
+                Perform DNS/IPv6 leak tests (dnsleaktest.com, test-ipv6.com) and
+                send large UDP packets to confirm no drops.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Security tests</h3>
+            <ul>
+              <li>
+                Pen-test key issuance/storage; ensure no unauthorized peer joins.
+              </li>
+              <li>
+                Capture packets with Wireshark to verify encryption and absence of
+                plaintext data.
+              </li>
+              <li>
+                Scan backend APIs with OWASP ZAP or Burp Suite for vulnerabilities.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Scalability tests</h3>
+            <ul>
+              <li>
+                Simulate concurrent connections via <code>wrk</code> or <code>k6</code>;
+                monitor CPU, RAM, and bandwidth.
+              </li>
+              <li>
+                Ramp active users (100 → 1k → 10k) and ensure autoscaling policies
+                keep latency < 80&nbsp;ms.
+              </li>
+              <li>
+                Validate logging/monitoring pipelines for real-time alerting under load.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="checklist">
+        <div class="section__header">
+          <p class="eyebrow">13 · Implementation Checklist</p>
+          <h2>Track readiness across workstreams</h2>
+        </div>
+        <div class="table">
+          <div class="table__header">
+            <span>Workstream</span>
+            <span>Owner</span>
+            <span>Status</span>
+          </div>
+          <div class="table__row">
+            <span>Legal documentation</span>
+            <span>Ops</span>
+            <span class="tag">Planned</span>
+          </div>
+          <div class="table__row">
+            <span>AWS provisioning scripts</span>
+            <span>DevOps</span>
+            <span class="tag tag--progress">In progress</span>
+          </div>
+          <div class="table__row">
+            <span>Android client MVP</span>
+            <span>Mobile</span>
+            <span class="tag">Planned</span>
+          </div>
+          <div class="table__row">
+            <span>iOS client MVP</span>
+            <span>Mobile</span>
+            <span class="tag">Planned</span>
+          </div>
+          <div class="table__row">
+            <span>Telemetry backend</span>
+            <span>Backend</span>
+            <span class="tag tag--done">Ready</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="client">
+        <div class="section__header">
+          <p class="eyebrow">14 · Client Configuration</p>
+          <h2>Provision per-device credentials</h2>
+          <p>
+            Each phone, tablet, or desktop must receive a unique key pair and IP
+            inside the <code>10.0.0.0/24</code> tunnel. Embed DNS pointing to
+            the VPN gateway to avoid leaks.
+          </p>
+        </div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>Client template</h3>
+            <pre class="code"><code>[Interface]
+PrivateKey = &lt;client1_private.key&gt;
+Address = 10.0.0.2/24
+DNS = 10.0.0.1
+MTU = 1280
+
+[Peer]
+PublicKey = &lt;server_public.key&gt;
+PresharedKey = &lt;optional_psk&gt;
+Endpoint = YOUR_SERVER_IP:51820
+AllowedIPs = 0.0.0.0/0, ::/0
+PersistentKeepalive = 25</code></pre>
+          </article>
+          <article class="card list-card">
+            <h3>Distribution checklist</h3>
+            <ul>
+              <li>
+                Rotate keys per device; revoke by deleting their <code>[Peer]</code>
+                entry and reloading <code>wg-quick</code>.
+              </li>
+              <li>
+                Offer QR codes (via <code>qrencode</code>) so Android/iOS apps
+                import configs with a scan.
+              </li>
+              <li>
+                Document to players how to toggle WireGuard/OpenVPN options and
+                Always-On VPN/kill switch settings.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="deployment">
+        <div class="section__header">
+          <p class="eyebrow">15 · Deployment &amp; Maintenance</p>
+          <h2>Publish responsibly and keep the fleet healthy</h2>
+        </div>
+        <div class="grid two-col">
+          <article class="card list-card">
+            <h3>Publish Android</h3>
+            <ul>
+              <li>Sign AAB/APK with release key; upload to Google Play Console ($25).</li>
+              <li>
+                Complete app listing (age rating, privacy policy) and request VPN
+                Service permission via the console questionnaire.
+              </li>
+              <li>
+                Justify <code>android.permission.BIND_VPN_SERVICE</code> usage and
+                align with Google’s anti-deception/data-minimization policies.
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Publish iOS</h3>
+            <ul>
+              <li>
+                Include/sandbox the Packet Tunnel extension in the bundle and sign
+                with production certificates.
+              </li>
+              <li>
+                Provide clear VPN descriptions, privacy policy, and logging stance
+                per Apple guidelines.
+              </li>
+              <li>
+                Ship via Xcode/Transporter; be ready to demo legitimate use if
+                App Review requests evidence.
+              </li>
+            </ul>
+          </article>
+        </div>
+        <div class="cards">
+          <article class="card list-card">
+            <h3>Maintenance</h3>
+            <ul>
+              <li>
+                Monitor servers with Prometheus/Grafana (CPU, bandwidth, latency,
+                connection counts); alert on anomalies.
+              </li>
+              <li>
+                Auto-scale: AWS ASGs or Terraform/Ansible for DigitalOcean/Linode
+                based on CPU or sessions.
+              </li>
+              <li>
+                Rotate WireGuard/OpenVPN keys every ~6 months and let apps fetch
+                new configs seamlessly.
+              </li>
+              <li>
+                Patch OS and VPN packages promptly; provide in-app or email support
+                to close the loop with gamers.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="architecture">
+        <div class="section__header">
+          <p class="eyebrow">16 · Architecture Diagrams</p>
+          <h2>Reference view of clients, backend, and VPN nodes</h2>
+        </div>
+        <div class="grid two-col">
+          <article class="card">
+            <h3>High-level topology</h3>
+            <pre class="code"><code>  ┌───────────────┐       Server Pool      ┌────────────────────┐
+  │ Android App   │──→┌────────────┐     │ AWS Bahrain VPS     │
+  │ / iOS App     │   ├─▶│ WireGuard  │◀─┐ │ (wg0 + ovpn fallback)│
+  └───────────────┘   │  └────────────┘  │ └────────────────────┘
+                      │                 ├─▶┌────────────────────┐
+      Backend API     │  ┌────────────┐  │ │ DigitalOcean VPS   │
+    (optional) ───────┴─▶│ Server list │──┘ │ (wg0 + ovpn)       │
+                        │ Key manager │     └────────────────────┘</code></pre>
+            <p>
+              Clients optionally request configs from the backend, then connect
+              directly to the target WireGuard/OpenVPN server.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Client workflow</h3>
+            <pre class="code"><code>User taps “Connect”
+        │
+        ▼
+Check terms & permissions
+        │
+        ▼
+Fetch server list
+        │
+        ▼
+Measure ping & auto-select
+        │
+        ▼
+Generate WireGuard config
+        │
+        ▼
+Call VpnService / NETunnelProvider
+        │
+        ▼
+Establish tunnel + kill switch
+        │
+        ▼
+Display latency & usage</code></pre>
+            <p>
+              The app enforces legal compliance, measures latency, builds the
+              WireGuard config, spins up the tunnel, and tracks metrics.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="best-practices">
+        <div class="section__header">
+          <p class="eyebrow">17 · Best Practices &amp; Pitfalls</p>
+          <h2>Keep security, performance, and UX dialed in</h2>
+        </div>
+        <div class="grid two-col">
+          <article class="card list-card">
+            <h3>Security essentials</h3>
+            <ul>
+              <li>Store private keys securely; never hard-code them in apps.</li>
+              <li>
+                Restrict SSH (key-only auth, no root login) and lock firewalls to VPN
+                ports plus SSH.
+              </li>
+              <li>
+                Enforce kill-switch + DNS leak protection and publish a transparent
+                privacy policy (no traffic logs).
+              </li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Performance tips</h3>
+            <ul>
+              <li>Optimize MTU/MSS (1280–1420) to avoid fragmentation.</li>
+              <li>Use UDP, QoS/DSCP for game packets, and place servers near users.</li>
+              <li>Provide OpenVPN/TCP 443 fallback for restrictive networks.</li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>User experience</h3>
+            <ul>
+              <li>Offer one-tap connect with real-time latency display.</li>
+              <li>Auto-reconnect on network changes and allow manual server selection.</li>
+              <li>Communicate legal compliance and acceptable use clearly.</li>
+            </ul>
+          </article>
+          <article class="card list-card">
+            <h3>Common mistakes</h3>
+            <ul>
+              <li>Ignoring MTU tuning, leading to packet loss.</li>
+              <li>Missing IP forwarding/NAT rules so clients lack internet access.</li>
+              <li>
+                Poor key hygiene or exposed WireGuard ports without firewalls, no
+                kill switch, or failing app-store policies.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="costs">
+        <div class="section__header">
+          <p class="eyebrow">18 · Expected Costs</p>
+          <h2>Budget baseline for infrastructure and distribution</h2>
+        </div>
+        <div class="table">
+          <div class="table__header">
+            <span>Item</span>
+            <span>Monthly Cost</span>
+            <span>Notes</span>
+          </div>
+          <div class="table__row">
+            <span>AWS t3.micro / t4g.small (Bahrain/UAE)</span>
+            <span>~USD 7–9</span>
+            <span>≈300 active users per node; vertical scale with higher tiers.</span>
+          </div>
+          <div class="table__row">
+            <span>DigitalOcean Basic 1 vCPU / 1 GB</span>
+            <span>USD 6</span>
+            <span>1 TB transfer; adequate for 200–300 sessions.</span>
+          </div>
+          <div class="table__row">
+            <span>Linode Nanode 1 GB</span>
+            <span>USD 5</span>
+            <span>Includes 1 TB transfer allowance.</span>
+          </div>
+          <div class="table__row">
+            <span>Domain &amp; DNS</span>
+            <span>USD 1–10</span>
+            <span>Custom domain for API/website; varies by TLD.</span>
+          </div>
+          <div class="table__row">
+            <span>SSL/TLS Certificates</span>
+            <span>Free</span>
+            <span>Let’s Encrypt; automate renewals.</span>
+          </div>
+          <div class="table__row">
+            <span>Backend hosting</span>
+            <span>USD 10–30</span>
+            <span>Small VPS (API + DB) with redundancy.</span>
+          </div>
+          <div class="table__row">
+            <span>Apple Developer Program</span>
+            <span>USD 99 / year</span>
+            <span>Required for iOS distribution.</span>
+          </div>
+          <div class="table__row">
+            <span>Google Play Developer account</span>
+            <span>USD 25 one-time</span>
+            <span>Required for Android distribution.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="conclusion">
+        <div class="section__header">
+          <p class="eyebrow">19 · Conclusion</p>
+          <h2>Launch a compliant, low-latency VPN for PUBG Mobile</h2>
+          <p>
+            Building a gaming VPN demands rigorous compliance, hardened servers,
+            MTU-aware networking, and polished Android/iOS clients. WireGuard’s
+            performance makes it ideal for low-latency play, while OpenVPN fallback,
+            QoS, kill switches, and user-friendly flows ensure connectivity even on
+            restrictive networks. With the step-by-step guidance, diagrams, configs,
+            and best practices above, Yemen-based PUBG players can connect reliably
+            to Saudi/Gulf servers while respecting local laws.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section__header">
+          <p class="eyebrow">Contact</p>
+          <h2>Get in touch</h2>
+          <p>If you'd like to collaborate or join the beta, use the form below — or email <a href="mailto:hello@gulfedge.example">hello@gulfedge.example</a>.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <form id="contactForm" aria-label="Contact form" novalidate>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required placeholder="Your name" />
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Tell us what you'd like to help with"></textarea>
+
+              <div style="display:flex;gap:8px;align-items:center;margin-top:0.5rem;">
+                <button class="btn primary" type="submit">Send message</button>
+                <div id="contactStatus" aria-live="polite" style="color:var(--muted);font-size:0.95rem;margin-left:6px"></div>
+              </div>
+            </form>
+          </article>
+          <article class="card list-card">
+            <h3>Other ways to reach us</h3>
+            <ul>
+              <li>Email: <a href="mailto:hello@gulfedge.example">hello@gulfedge.example</a></li>
+              <li>Repo issues for technical questions</li>
+              <li>Join our beta channel (invite-only)</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+      <footer class="footer">
+        <p>© 2024 Gulf Edge Labs — purpose-built gaming VPN for PUBG Mobile.</p>
+        <div class="footer__links">
+          <a href="#legal">ToS Guidance</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#android">Android App</a>
+          <a href="#ios">iOS App</a>
+          <a href="#backend">Backend</a>
+          <a href="#scaling">Scaling</a>
+          <a href="#server">Server Setup</a>
+          <a href="#testing">Testing</a>
+          <a href="#client">Client Config</a>
+          <a href="#deployment">Deployment</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#best-practices">Best Practices</a>
+          <a href="#costs">Costs</a>
+          <a href="#conclusion">Conclusion</a>
+          <a href="#risk">Security</a>
+        </div>
+      </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
